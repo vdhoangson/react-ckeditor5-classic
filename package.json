@@ -1,0 +1,53 @@
+{
+  "name": "react-ckeditor5-classic",
+  "version": "1.0.4",
+  "description": "CKEditor5 Classic component for ReactJS",
+  "keywords": [
+    "react",
+    "component",
+    "ckeditor",
+    "react-ckeditor",
+    "ckeditor-library",
+    "ckeditor-component"
+  ],
+  "homepage": "https://github.com/vdhoangson/react-ckeditor5-classic",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vdhoangson/react-ckeditor5-classic.git"
+  },
+  "maintainers": [
+    "vdhoangson"
+  ],
+  "author": "vdhoangson",
+  "bugs": {
+    "url": "https://github.com/vdhoangson/react-ckeditor5-classic/issues"
+  },
+  "licenses": "MIT",
+  "scripts": {
+    "prepublish": "babel --out-dir ./lib ./src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-example": "browserify ./example/example.js -o ./example/bundle.js -t [ babelify --presets [ es2015 react ] ]",
+    "serve-example": "http-server ./example/ -p 8081",
+    "start": "npm run build-example; npm run serve-example",
+    "compile": "rimraf lib/* && babel src -d lib"
+  },
+  "main": "./lib/index.js",
+  "devDependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "http-server": "^0.9.0",
+    "browserify": "^13.1.1",
+    "babelify": "^7.3.0",
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.13.2",
+    "babel-preset-es2015": "^6.9.0",
+    "prop-types": "^15.5.4",
+    "rimraf": "^2.5.4"
+  },
+  "dependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-runtime": "^6.11.6",
+    "load-script": "^1.0.0"
+  }
+}
