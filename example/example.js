@@ -12,8 +12,8 @@ class Example extends Component {
     };
   }
 
-  onChange(evt){
-    console.log("onChange fired with event info: ",evt, "and data: ",evt.editor.getData());
+  onChange(content){
+    console.log("Content: " + content);
   }
 
   render() {
@@ -22,9 +22,7 @@ class Example extends Component {
         <ReactCKEditor
           name='example'
           content={this.state.content}
-          events={{
-            onChange: this.onChange
-          }}
+          onChange={this.onChange}
         />
       </div>
     );

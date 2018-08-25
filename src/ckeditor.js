@@ -31,10 +31,6 @@ class ReactCKEditor extends Component {
     }
   }
 
-  componentWillUnmount() {
-    this.unmounted = true;
-  }
-
   onLoad() {
     if (this.unmounted) return;
 
