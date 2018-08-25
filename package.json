@@ -1,6 +1,6 @@
 {
   "name": "react-ckeditor5-classic",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "CKEditor5 Classic component for ReactJS",
   "keywords": [
     "react",
@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/vdhoangson/react-ckeditor5-classic/issues"
   },
-  "licenses": "MIT",
+  "license": "MIT",
   "scripts": {
     "prepublish": "babel --out-dir ./lib ./src",
     "test": "echo \"Error: no test specified\" && exit 1",

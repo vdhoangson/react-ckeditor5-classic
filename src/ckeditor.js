@@ -79,7 +79,6 @@ ReactCKEditor.defaultProps = {
   isScriptLoaded: false,
   scriptUrl: defaultCDN,
   activeClass: '',
-  events: {},
   onChange: ()=>{}
 };
 
@@ -90,7 +89,6 @@ ReactCKEditor.propTypes = {
   isScriptLoaded: PropTypes.bool,
   scriptUrl: PropTypes.string,
   activeClass: PropTypes.string,
-  events: PropTypes.object,
   onChange: PropTypes.func,
 };
 
