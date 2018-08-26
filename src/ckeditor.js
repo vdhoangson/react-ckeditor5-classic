@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-const loadScript = require('load-script');
-
-var defaultCDN = 'https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 /**
  * @author vdhoangson
@@ -17,18 +15,13 @@ class ReactCKEditor extends Component {
 
     //State initialization
     this.state = {
-      isScriptLoaded: props.isScriptLoaded,
       name: this.props.name,
     };
   }
 
   //load ckeditor script as soon as component mounts if not already loaded
   componentDidMount() {
-    if (!this.state.isScriptLoaded) {
-      loadScript(this.props.scriptUrl, this.onLoad);
-    } else {
-      this.onLoad();
-    }
+    this.onLoad();
   }
 
   onLoad() {
@@ -37,7 +30,7 @@ class ReactCKEditor extends Component {
     const { name } = this.state;
     const { onChange, config } = this.props;
 
-    this.editor = window.ClassicEditor;
+    this.editor = ClassicEditor;
 
     this.editor
     .create( document.querySelector( "#" + name ) )
@@ -77,7 +70,6 @@ ReactCKEditor.defaultProps = {
     width: 'auto'
   },
   isScriptLoaded: false,
-  scriptUrl: defaultCDN,
   activeClass: '',
   onChange: ()=>{}
 };
@@ -87,9 +79,8 @@ ReactCKEditor.propTypes = {
   content: PropTypes.any,
   config: PropTypes.object,
   isScriptLoaded: PropTypes.bool,
-  scriptUrl: PropTypes.string,
   activeClass: PropTypes.string,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default ReactCKEditor;
