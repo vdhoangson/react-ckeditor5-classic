@@ -29,15 +29,30 @@ class ReactCKEditor extends Component {
     } else {
       this.onLoad();
     }
+
+    this.unmounted = false;
+  }
+
+  componentWillUnmount() {
+    this.unmounted = true;
   }
 
   onLoad() {
     if (this.unmounted) return;
 
+    this.setState({
+      isScriptLoaded: true
+    });
+
     const { name } = this.state;
     const { onChange, config } = this.props;
 
     this.editor = window.ClassicEditor;
+
+    if(!this.editor){
+      console.error('CKEditor not found');
+      return;
+    }
 
     this.editor
     .create( document.querySelector( "#" + name ) )
@@ -58,10 +73,6 @@ class ReactCKEditor extends Component {
     .catch( error => {
       console.error( error );
     } );
-
-    this.setState({
-      isScriptLoaded: true
-    });
   }
 
   render() {
