@@ -24,7 +24,7 @@ class ReactCKEditor extends Component {
 
   //load ckeditor script as soon as component mounts if not already loaded
   componentDidMount() {
-    if (!this.state.isScriptLoaded) {
+    if (!this.state.isScriptLoaded && !window.CKEDITOR_VERSION) {
       loadScript(this.props.scriptUrl, this.onLoad);
     } else {
       this.onLoad();
@@ -39,6 +39,11 @@ class ReactCKEditor extends Component {
 
   onLoad() {
     if (this.unmounted) return;
+
+    if (!window.CKEDITOR_VERSION) {
+      console.error('CKEditor not found');
+      return;
+    }
 
     this.setState({
       isScriptLoaded: true
@@ -58,12 +63,18 @@ class ReactCKEditor extends Component {
     .create( document.querySelector( "#" + name ) )
     .then( editor => {
       const target = document.getElementsByClassName("ck-content")[0];
-
+      
       if(config.height) target.style.height = config.height;
       if(config.width) target.style.width = config.width;
 
       //set content
-      if(this.props.content) editor.setData(this.props.content);
+      if(this.props.content) {
+        editor.setData(this.props.content);
+      }
+
+      if(editor.getData()){
+        editor.setData(editor.getData())
+      }
 
       editor.model.document.on('change', function( e ) {
         onChange(editor.getData());
@@ -76,7 +87,7 @@ class ReactCKEditor extends Component {
   }
 
   render() {
-    return <div className={this.props.activeClass} id={this.state.name} />;
+    return (<div className={this.props.activeClass} id={this.state.name} />);
   }
 }
 
