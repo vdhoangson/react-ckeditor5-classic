@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import loadScript from 'load-script';
 
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 var defaultCDN = 'https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js';
 
 /**
@@ -25,9 +28,10 @@ class ReactCKEditor extends Component {
   //load ckeditor script as soon as component mounts if not already loaded
   componentDidMount() {
     if (!this.state.isScriptLoaded) {
-      loadScript(this.props.scriptUrl, this.onLoad);
+      // this.onLoad();
+      // loadScript(this.props.scriptUrl, this.onLoad);
     } else {
-      this.onLoad();
+      // this.onLoad();
     }
 
     this.unmounted = false;
@@ -76,7 +80,18 @@ class ReactCKEditor extends Component {
   }
 
   render() {
-    return <div className={this.props.activeClass} id={this.state.name} />;
+    return (<CKEditor
+      editor={ ClassicEditor }
+      data="<p>Hello from CKEditor 5!</p>"
+      onInit={ editor => {
+          // You can store the "editor" and use when it's needed.
+          console.log( 'Editor is ready to use!', editor );
+      } }
+      onChange={ ( event, editor ) => {
+          const data = editor.getData();
+          console.log( { event, editor, data } );
+      } }
+  />);
   }
 }
 

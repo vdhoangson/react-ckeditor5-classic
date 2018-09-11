@@ -45,6 +45,8 @@
     "rimraf": "^2.5.4"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^11.0.1",
+    "@ckeditor/ckeditor5-react": "^1.0.0-beta.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-react": "^6.16.0",
     "babel-runtime": "^6.11.6",
